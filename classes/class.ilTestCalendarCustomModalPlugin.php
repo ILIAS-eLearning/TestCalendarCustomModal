@@ -25,28 +25,23 @@ class ilTestCalendarCustomModalPlugin extends ilAppointmentCustomModalPlugin
 
 	/**
 	 * replace the complete modal content or empty
+	 * This example replaces the content of the modal only if the appointment is a full day event.
 	 * @return string
 	 */
 	public function replaceContent()
 	{
-		//deactivated
-		//return "";
-
 		$appointment = $this->getAppointment();
 
 		if($appointment->isFullDay())
 		{
 			return "<div style='background-color: lightblue; border:3px solid red;padding:10px;'>
- 					<p>[PLUGIN] extra content: This event is FULL DAY!</p>
+ 					<p>The plugin 'TestCalendarCustomModalPlugin' replaces the content of full day events.</p>
  					<img src='http://lorempixel.com/300/200/technics' alt=''>
  				</div>";
 		}
 		else
 		{
-			return "<div style='background-color: lightblue; border:1px solid blue;padding:10px;'>
- 					<p>[PLUGIN] extra content: This event is not full day.</p>
- 					<img src='http://lorempixel.com/300/200/business' alt=''>
- 				</div>";
+			return false;
 		}
 	}
 
@@ -74,7 +69,7 @@ class ilTestCalendarCustomModalPlugin extends ilAppointmentCustomModalPlugin
 		}
 
 		return "<div style='background-color: $bgcolor; border:1px solid orange;padding:10px;'>
- 					<h1>[PLUGIN] dynamic string: $str</h1>
+ 					<h1>$str</h1>
  					<img src='http://lorempixel.com/400/200/technics' alt=''>
  				</div>";
 	}
@@ -85,7 +80,7 @@ class ilTestCalendarCustomModalPlugin extends ilAppointmentCustomModalPlugin
 	 */
 	public function infoscreenAddContent(ilInfoScreenGUI $a_info)
 	{
-		$a_info->addProperty("[PLUGIN] extra info", "[PLUGIN]This is the value of the property created by the plugin.");
+		$a_info->addProperty("Plugin info", "This text is created by the plugin 'TestCalendarCustomModal'.");
 
 		return $a_info;
 	}
@@ -96,7 +91,7 @@ class ilTestCalendarCustomModalPlugin extends ilAppointmentCustomModalPlugin
 	 */
 	public function toolbarAddItems(ilToolbarGUI $a_toolbar)
 	{
-		$a_toolbar->addText("[PLUGIN] txt added");
+		$a_toolbar->addText("Text added by the plugin 'TestCalendarCustomModal'");
 		return $a_toolbar;
 	}
 
@@ -105,9 +100,15 @@ class ilTestCalendarCustomModalPlugin extends ilAppointmentCustomModalPlugin
 	 */
 	public function toolbarReplaceContent()
 	{
-		$toolbar = new ilToolbarGUI();
-		$toolbar->addText("[PLUGIN] Toolbar replaced");
-		return $toolbar;
+		$appointment = $this->getAppointment();
+
+		if($appointment->isFullDay()) {
+			$toolbar = new ilToolbarGUI();
+			$toolbar->addText("Toolbar replaced by the plugin 'TestCalendarCustomModal'");
+			return $toolbar;
+		}
+
+		return false;
 	}
 
 	/**
@@ -116,6 +117,6 @@ class ilTestCalendarCustomModalPlugin extends ilAppointmentCustomModalPlugin
 	 */
 	public function editModalTitle($title)
 	{
-		return "[PLUGIN]reverses the title: ".strrev($title);
+		return "<span style='color:green; font-weight: bold;'>".strtoupper($title)."</span>";
 	}
 }
