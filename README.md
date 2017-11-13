@@ -28,3 +28,25 @@ This plugin does not support any language. All text is hardcoded in the php file
 This plugin add/change content in the default appointment presentation (modals).
 Modifications are visible in the Personal Desktop calendar and in the marginal calendar located in courses and groups.
 
+#### Visible Changes
+
+- The title of the modal is displayed in green color with bold capital letters.
+	
+	- If the appointment is FULL DAY event:
+
+		1. The toolbar is replaced with another one which shows the text: "Toolbar replaced by the plugin 'TestCalendarCustomModal'"
+		2. All the content is replaced with a blue box containing:
+			- Message: "The plugin 'TestCalendarCustomModalPlugin' replaces the content of full day events."
+			- Random image.
+
+	- If the appointment is NOT FULL DAY event:
+		1. The toolbar contains an extra text: "Text added by the plugin 'TestCalendarCustomModal'"
+		2. The infosceen displays an extra field called "Plugin info" with this value "This text is created by the plugin 'TestCalendarCustomModal'"
+		3. Depending of the event this content is added.
+			
+			- If it is a session event: Orange box with the text "This modal contains Session Information".
+			- If it is another kind of ILIAS object: Light green box with the text "This modal contains Object info"
+			- If it is not an ILIAS object (e.g. consultation hours): Light blue box with the text "This modal doesn't contain Object info"
+
+			In all the cases a random image is added just below the text.
+
