@@ -3,13 +3,10 @@
 CustomModal is a plugin to test the "AppointmentCustomModal" plugin slot. It is only for test purposes.
 
 **Minimum ILIAS Version:**
-5.2
-
-**Maximum ILIAS Version:**
-5.2
+7
 
 **Responsible Developer:**
-Jesús López Reyes - lopez@leifos.com
+Stefan Meyer
 
 **Supported Languages:**
 This plugin does not support any language. All text is hardcoded in the php files. 
