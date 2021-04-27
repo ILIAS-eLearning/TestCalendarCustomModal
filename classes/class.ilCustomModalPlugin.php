@@ -111,6 +111,15 @@ class ilCustomModalPlugin extends ilAppointmentCustomModalPlugin
 	 */
 	public function toolbarReplaceContent()
 	{
+        //replace toolbar only for courses, so everything else gets extra content added
+        $appointment = $this->getAppointment();
+        $cat_id = ilCalendarCategoryAssignments::_lookupCategory($appointment->getEntryId());
+        $cat = ilCalendarCategory::getInstanceByCategoryId($cat_id);
+
+        if (ilObject::_lookupType($cat->getObjId()) != 'crs') {
+            return null;
+        }
+
 		$toolbar = new ilToolbarGUI();
 		$toolbar->addText("Toolbar durch das Plugin 'TestCalendarCustomModal' ersetzt");
 		return $toolbar;
