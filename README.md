@@ -3,7 +3,7 @@
 CustomModal is a plugin to test the "AppointmentCustomModal" plugin slot. It is only for test purposes.
 
 **Minimum ILIAS Version:**
-7
+9
 
 **Responsible Developer:**
 Stefan Meyer

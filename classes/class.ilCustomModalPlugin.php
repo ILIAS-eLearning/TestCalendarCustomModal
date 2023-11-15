@@ -1,5 +1,6 @@
 <?php
-include_once("./Services/Calendar/classes/class.ilAppointmentCustomModalPlugin.php");
+
+declare(strict_types=1);
 
 /***
  *
@@ -7,7 +8,6 @@ include_once("./Services/Calendar/classes/class.ilAppointmentCustomModalPlugin.p
  * Plugin slot: AppointmentCustomModal
  * https://www.ilias.de/docu/goto.php?target=wiki_1357_Plugin_Slot_for_Detailed_Appointement_View
  * @author Jesús López Reyes <lopez@leifos.com>
- * @version $Id$
  *
  */
 class ilCustomModalPlugin extends ilAppointmentCustomModalPlugin
@@ -15,19 +15,16 @@ class ilCustomModalPlugin extends ilAppointmentCustomModalPlugin
 	/**
 	 * Get Plugin Name. Must be same as in class name il<Name>Plugin
 	 * and must correspond to plugins subdirectory name.
-	 *
-	 * @return	string	Plugin Name
 	 */
-	final function getPluginName()
+	final public function getPluginName(): string
 	{
 		return "CustomModal";
 	}
 
 	/**
 	 * replace the complete modal content or empty
-	 * @return string
 	 */
-	public function replaceContent()
+	public function replaceContent(): string
 	{
 		//replace content only for courses, so everything else gets extra content added
         $appointment = $this->getAppointment();
@@ -58,9 +55,8 @@ class ilCustomModalPlugin extends ilAppointmentCustomModalPlugin
 
 	/**
 	 * Add extra content in the grid.
-	 * @return string html content
 	 */
-	public function addExtraContent()
+	public function addExtraContent(): string
 	{
 		$appointment = $this->getAppointment();
 
@@ -71,7 +67,7 @@ class ilCustomModalPlugin extends ilAppointmentCustomModalPlugin
 		if(ilObject::_lookupType($cat->getObjId()) == "sess") {
 			$bgcolor = "orange";
 			$str = "Dieses Modal enthält Sitzungsinformationen";
-		}  else if($cat->getType() == ilCalendarCategory::TYPE_OBJ) {
+		}  elseif($cat->getType() == ilCalendarCategory::TYPE_OBJ) {
 			$bgcolor = "#DAF0DF";
 			$str = "Dieses Modal enthält Objektinfo";
 		} else {
@@ -85,31 +81,20 @@ class ilCustomModalPlugin extends ilAppointmentCustomModalPlugin
  				</div>";
 	}
 
-	/**
-	 * @param ilInfoScreenGUI $a_info
-	 * @return ilInfoScreenGUI
-	 */
-	public function infoscreenAddContent(ilInfoScreenGUI $a_info)
+	public function infoscreenAddContent(ilInfoScreenGUI $a_info): ilInfoScreenGUI
 	{
 		$a_info->addProperty("Plugin info", "Dieser Text wird vom Plugin 'TestCalendarCustomModal' erstellt");
 
 		return $a_info;
 	}
 
-	/**
-	 * @param ilToolbarGUI $a_toolbar
-	 * @return ilToolbarGUI
-	 */
-	public function toolbarAddItems(ilToolbarGUI $a_toolbar)
+	public function toolbarAddItems(ilToolbarGUI $a_toolbar): ilToolbarGUI
 	{
 		$a_toolbar->addText("Text hinzugefügt vom Plugin 'TestCalendarCustomModal'");
 		return $a_toolbar;
 	}
 
-	/**
-	 * @return ilToolbarGUI or empty
-	 */
-	public function toolbarReplaceContent()
+	public function toolbarReplaceContent(): ?ilToolbarGUI
 	{
         //replace toolbar only for courses, so everything else gets extra content added
         $appointment = $this->getAppointment();
@@ -125,12 +110,8 @@ class ilCustomModalPlugin extends ilAppointmentCustomModalPlugin
 		return $toolbar;
 	}
 
-	/**
-	 * @param string $title
-	 * @return string
-	 */
-	public function editModalTitle($title)
+	public function editModalTitle(string $current_title): string
 	{
-		return "<span style='color:green'>".mb_strtoupper($title)."</span>";
+		return "<span style='color:green'>".mb_strtoupper($current_title)."</span>";
 	}
 }
