@@ -3,7 +3,7 @@
 CustomModal is a plugin to test the "AppointmentCustomModal" plugin slot. It is only for test purposes.
 
 **Minimum ILIAS Version:**
-9
+11
 
 **Responsible Developer:**
 Stefan Meyer
@@ -12,7 +12,7 @@ Stefan Meyer
 This plugin does not support any language. All text is hardcoded in the php files. 
 
 ### Quick Installation Guide
-1. Copy the content of this folder in <ILIAS_directory>/Customizing/global/plugins/Services/Calendar/AppointmentCustomModal/CustomModal
+1. Copy the content of this folder in <ILIAS_directory>/public/Customizing/global/plugins/Services/Calendar/AppointmentCustomModal/CustomModal
 
 2. This plugin can be activated as usual.
 
